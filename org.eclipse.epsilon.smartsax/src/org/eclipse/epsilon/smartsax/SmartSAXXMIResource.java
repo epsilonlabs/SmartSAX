@@ -19,9 +19,7 @@ public class SmartSAXXMIResource extends XMIResourceImpl{
 	public static final String OPTION_EFFECTIVE_METAMODEL_RECONCILER = "effective-metamodel-reconciler";
 	public static final String OPTION_RECONCILE_EFFECTIVE_METAMODELS = "reconcile-effective-metamodels";
 
-	
 	public boolean loadAllAttributes = true;
-
 	
 	protected HashMap<String, HashMap<String, ArrayList<String>>> objectsAndRefNamesToVisit = new HashMap<String, HashMap<String,ArrayList<String>>>();
 	protected HashMap<String, HashMap<String, ArrayList<String>>> actualObjectsToLoad = new HashMap<String, HashMap<String,ArrayList<String>>>();
