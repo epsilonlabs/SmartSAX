@@ -1,0 +1,93 @@
+var allContents = m.allContents();
+
+var size = allContents.size();
+
+var counter = new Map;
+
+for(a in allContents)
+{
+	var numOfElementsInvolved = getNumberOfContents(a) + 1;
+	var count = counter.get(a.type());
+	if(count.isDefined())
+	{
+		count = count + numOfElementsInvolved;
+		counter.put(a.type(), count);
+	}
+	else
+	{
+		counter.put(a.type(), numOfElementsInvolved);
+	}
+}
+
+var sum = 0;
+
+for(k in counter.keySet())
+{
+	k.name.print();
+	": ".print();
+	var val = counter.get(k);
+	sum = sum + val;
+	val.println();
+}
+
+
+
+sum.println();
+
+size.println();
+
+var eolQueryString = "var size = 0;\n";
+
+for(clazz in getPercent(counter, sum, 10))
+{
+	//clazz.eAllStructuralFeatures.println();
+	clazz.eAllReferences.size().println();
+	eolQueryString = eolQueryString + "var " + clazz.name.firstToLowerCase() + " = " + clazz.name + ".all.first;\n";
+	eolQueryString = eolQueryString + "size = size + " + clazz.name + ".all.size();\n";
+		//eolQueryString = eolQueryString + clazz.name + ".all.size().println();\n";
+	
+	clazz.name.print();
+	": ".print();
+	var val = counter.get(clazz);
+	val.println();
+}
+
+eolQueryString = eolQueryString + "size.println();\n";
+eolQueryString.println();
+
+@cached
+operation getNumberOfContents(a: Any)
+{
+	var sum = a.eContents.size();
+	for(content in a.eContents)
+	{
+		sum = sum + getNumberOfContents(content);
+	}
+	return sum;
+}
+
+
+operation getPercent(counter: Map, size: Integer, percent : Integer)
+{
+	var result = new Set;
+	var number = size*percent/100;
+	var sum = 0;
+	for(k in counter.keySet())
+	{
+		var value = counter.get(k);
+		if(value < number)
+		{
+			if(value + sum <= number and value + sum < number * 1.15)
+			{
+				sum = sum + value;
+				result.add(k);
+			}
+		}
+		if(sum > number)
+		{
+			break;
+		}
+	}
+	sum.errln();
+	return result;
+}
