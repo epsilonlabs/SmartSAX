@@ -40,6 +40,7 @@ public class SmartSAXXMIResource extends XMIResourceImpl{
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
 		

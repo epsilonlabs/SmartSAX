@@ -50,6 +50,7 @@ public class EffectiveMetamodelReconciler {
 		packages.add(ePackage);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void addPackages(Collection<?> packages)
 	{
 		this.packages.addAll((Collection<? extends EPackage>) packages);
