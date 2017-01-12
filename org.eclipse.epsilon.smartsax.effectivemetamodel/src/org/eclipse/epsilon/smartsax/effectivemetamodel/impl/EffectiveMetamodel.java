@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 public class EffectiveMetamodel {
 
+	//name
 	protected String name;
+	//nsuri
 	protected String nsuri;
+	//cache for allOfType
 	protected ArrayList<EffectiveType> allOfType = new ArrayList<EffectiveType>();
+	//cache for allOfKind
 	protected ArrayList<EffectiveType> allOfKind = new ArrayList<EffectiveType>();
-	
+	//cache for types
 	protected ArrayList<EffectiveType> types = new ArrayList<EffectiveType>();
 	
 	public ArrayList<EffectiveType> getTypes() {
